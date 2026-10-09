@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dci2q8v74c71i"]
+
+[ext_resource type="Script" uid="uid://wogt08jbyguu" path="res://Scripts/DialogueSystem.gd" id="1_2xlh6"]
+[ext_resource type="Texture2D" uid="uid://cbsu4clk6ve1g" path="res://Assets/Player/Char_003_Idle.png" id="2_eq36v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qvwh"]
+atlas = ExtResource("2_eq36v")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phkby"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qvwh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" unique_id=1234075052]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2xlh6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=642050869]
+position = Vector2(106, 79)
+scale = Vector2(4.4305553, 4.4305553)
+sprite_frames = SubResource("SpriteFrames_phkby")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1544282320]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.79800004
+anchor_right = 0.5
+anchor_bottom = 0.79800004
+offset_left = -227.0
+offset_top = -46.056015
+offset_right = 227.0
+offset_bottom = 45.943985
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=2141633015]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -40.0
+offset_right = 221.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "lalallalalla"
