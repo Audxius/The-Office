@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bw7wke3675tff"]
 
+[ext_resource type="PackedScene" uid="uid://ttaadeui32ds" path="res://Assets/Player/Player.tscn" id="1_tochr"]
+
 [node name="Title" type="Control" unique_id=603785102]
 layout_mode = 3
 anchors_preset = 0
@@ -20,3 +22,6 @@ theme_override_font_sizes/font_size = 70
 text = "the office"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player" parent="." unique_id=778057859 instance=ExtResource("1_tochr")]
+position = Vector2(113, 202)
