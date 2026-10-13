@@ -1,61 +1,73 @@
 [gd_scene format=3 uid="uid://dci2q8v74c71i"]
 
-[ext_resource type="Script" uid="uid://wogt08jbyguu" path="res://Scripts/DialogueSystem.gd" id="1_2xlh6"]
-[ext_resource type="Texture2D" uid="uid://cbsu4clk6ve1g" path="res://Assets/Player/Char_003_Idle.png" id="2_eq36v"]
+[ext_resource type="Script" uid="uid://fyylqv1hnili" path="res://Scripts/TextBox.gd" id="1_2xlh6"]
+[ext_resource type="FontFile" uid="uid://6fx32y6wim6v" path="res://Assets/Fonts/rct2.otf" id="1_47tab"]
+[ext_resource type="AudioStream" uid="uid://b2u4n41a5odwt" path="res://Assets/SFX/speak.wav" id="3_eq36v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8qvwh"]
-atlas = ExtResource("2_eq36v")
-region = Rect2(0, 0, 72, 72)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdcxc"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6745098, 0.6745098, 1, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_phkby"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8qvwh")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
+[node name="Control" type="CanvasLayer" unique_id=337323517]
+script = ExtResource("1_2xlh6")
 
-[node name="Control" type="Control" unique_id=1234075052]
-layout_mode = 3
+[node name="TextBoxContainer" type="MarginContainer" parent="." unique_id=119622221]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -95.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="TextBoxContainer" unique_id=1033867444]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mdcxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer/Panel" unique_id=169977960]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = -3.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2xlh6")
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=642050869]
-position = Vector2(106, 79)
-scale = Vector2(4.4305553, 4.4305553)
-sprite_frames = SubResource("SpriteFrames_phkby")
+[node name="Panel" type="Panel" parent="TextBoxContainer/Panel/MarginContainer" unique_id=1664456094]
+visible = false
+layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1544282320]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.79800004
-anchor_right = 0.5
-anchor_bottom = 0.79800004
-offset_left = -227.0
-offset_top = -46.056015
-offset_right = 227.0
-offset_bottom = 45.943985
-color = Color(0.15487596, 0.154876, 0.15487596, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="TextBoxContainer/Panel/MarginContainer" unique_id=1200732041]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=2141633015]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -221.0
-offset_top = -40.0
-offset_right = 221.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "lalallalalla"
+[node name="CharacterName" type="Label" parent="TextBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1197723743]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_47tab")
+theme_override_font_sizes/font_size = 24
+text = "Mariia Prantsypal"
+
+[node name="SpokenText" type="Label" parent="TextBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1896631875]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_47tab")
+theme_override_font_sizes/font_size = 40
+text = "I like to fart from all kinds of places. Tehe"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="." unique_id=801243866]
+stream = ExtResource("3_eq36v")
+
+[node name="Menu" type="AudioStreamPlayer2D" parent="." unique_id=1178159912]

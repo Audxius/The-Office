@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://tomqgxmckogi"]
 
+[ext_resource type="PackedScene" uid="uid://djvwul5mjb28y" path="res://Assets/Intro/The ground.blend" id="1_3edat"]
+
 [node name="World" type="Node3D" unique_id=840253486]
+
+[node name="The ground" parent="." unique_id=1509919716 instance=ExtResource("1_3edat")]
