@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fyylqv1hnili" path="res://Scripts/TextBox.gd" id="1_2xlh6"]
 [ext_resource type="FontFile" uid="uid://6fx32y6wim6v" path="res://Assets/Fonts/rct2.otf" id="1_47tab"]
+[ext_resource type="Texture2D" uid="uid://cyw5y6xksvv02" path="res://Assets/Textures/textbox.png" id="2_8qvwh"]
 [ext_resource type="AudioStream" uid="uid://b2u4n41a5odwt" path="res://Assets/SFX/speak.wav" id="3_eq36v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdcxc"]
@@ -18,54 +19,60 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = -95.0
-offset_right = -9.0
-offset_bottom = -9.0
+offset_left = 1.0
+offset_top = -101.0
+offset_right = -1.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="TextBoxContainer" unique_id=1033867444]
+[node name="TextureRect" type="TextureRect" parent="TextBoxContainer" unique_id=2112842895]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mdcxc")
+texture = ExtResource("2_8qvwh")
+expand_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer/Panel" unique_id=169977960]
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer/TextureRect" unique_id=169977960]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 4.0
-offset_right = -3.0
-offset_bottom = -4.0
+offset_left = 17.0
+offset_top = 14.0
+offset_right = -17.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Panel" type="Panel" parent="TextBoxContainer/Panel/MarginContainer" unique_id=1664456094]
+[node name="Panel" type="Panel" parent="TextBoxContainer/TextureRect/MarginContainer" unique_id=1664456094]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextBoxContainer/Panel/MarginContainer" unique_id=1200732041]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextBoxContainer/TextureRect/MarginContainer" unique_id=1200732041]
 layout_mode = 2
 
-[node name="CharacterName" type="Label" parent="TextBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1197723743]
+[node name="CharacterName" type="Label" parent="TextBoxContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1197723743]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_47tab")
 theme_override_font_sizes/font_size = 24
 text = "Mariia Prantsypal"
 
-[node name="SpokenText" type="Label" parent="TextBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1896631875]
+[node name="SpokenText" type="Label" parent="TextBoxContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1896631875]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_47tab")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 37
 text = "I like to fart from all kinds of places. Tehe"
 autowrap_mode = 3
 clip_text = true
+
+[node name="Panel" type="Panel" parent="TextBoxContainer" unique_id=1033867444]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mdcxc")
 
 [node name="Voice" type="AudioStreamPlayer2D" parent="." unique_id=801243866]
 stream = ExtResource("3_eq36v")

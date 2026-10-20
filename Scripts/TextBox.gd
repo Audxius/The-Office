@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 @onready var text_box_container: MarginContainer = $TextBoxContainer
-@onready var spoken_text: Label = $TextBoxContainer/Panel/MarginContainer/VBoxContainer/SpokenText
-@onready var character_name: Label = $TextBoxContainer/Panel/MarginContainer/VBoxContainer/CharacterName
+@onready var spoken_text: Label = $TextBoxContainer/TextureRect/MarginContainer/VBoxContainer/SpokenText
+@onready var character_name: Label = $TextBoxContainer/TextureRect/MarginContainer/VBoxContainer/CharacterName
 @onready var sfx: AudioStreamPlayer2D = $Voice
 @onready var select: AudioStreamPlayer2D = $Menu
 
