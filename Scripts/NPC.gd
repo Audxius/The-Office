@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var speed = 0.185
 @export var min_wait = 1.0
 @export var max_wait = 3.0
+@export var npc_name = "NPC"
+@export var lines: Array[String] = ["Hello!"]
 const tile_size: Vector2 = Vector2(32,32)
 var sprite_node_pos_tween: Tween
 var idle_anim = "default"
@@ -19,7 +21,7 @@ func _physics_process(delta):
 
 	sprite.play(idle_anim)
 	wait_time -= delta
-	if wait_time > 0:
+	if wait_time > 0 or Dialogue.is_open():
 		return
 	wait_time = randf_range(min_wait, max_wait)
 
@@ -46,6 +48,17 @@ func _physics_process(delta):
 				sprite.play("walk side")
 			sprite.flip_h = false
 			idle_anim = "idle side"
+
+func interact(player):
+	var dir = player.global_position - global_position
+	if abs(dir.x) > abs(dir.y):
+		idle_anim = "idle side"
+		sprite.flip_h = dir.x < 0
+	elif dir.y < 0:
+		idle_anim = "idle up"
+	else:
+		idle_anim = "default"
+	Dialogue.talk(npc_name, lines)
 
 func _move(dir: Vector2):
 	global_position += dir * tile_size

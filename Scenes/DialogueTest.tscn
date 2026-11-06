@@ -61,10 +61,12 @@ text = "Mariia Prantsypal"
 
 [node name="SpokenText" type="Label" parent="TextBoxContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1896631875]
 layout_mode = 2
+custom_minimum_size = Vector2(1, 0)
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_47tab")
-theme_override_font_sizes/font_size = 37
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 30
 text = "I like to fart from all kinds of places. Tehe"
 autowrap_mode = 3
 clip_text = true
@@ -78,3 +80,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mdcxc")
 stream = ExtResource("3_eq36v")
 
 [node name="Menu" type="AudioStreamPlayer2D" parent="." unique_id=1178159912]
+
+[node name="NextIndicator" type="Label" parent="TextBoxContainer/TextureRect"]
+visible = false
+layout_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_47tab")
+theme_override_font_sizes/font_size = 24
+text = "v"
+horizontal_alignment = 1

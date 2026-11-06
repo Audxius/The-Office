@@ -38,3 +38,4 @@ position = Vector2(206, 201)
 
 [node name="NPC" parent="World" unique_id=268624213 instance=ExtResource("3_6khh7")]
 position = Vector2(317, 187)
+lines = Array[String](["Hello my name is Mariia Prantsypal \\nand I like to fart from all sorts of places im writing this to be as long as possible to see how long this gets and how long lines can the script handle hahaha among us nvm thats more sergej"])

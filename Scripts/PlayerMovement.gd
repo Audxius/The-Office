@@ -5,27 +5,31 @@ const tile_size: Vector2 = Vector2(32,32)
 var sprite_node_pos_tween: Tween
 var idle_anim = "default"
 @onready var sprite_offset = sprite.position
+@onready var facing_ray: RayCast2D = $down
 
 func _ready() -> void:
 	sprite.play("default")
 
 func _physics_process(_delta):
-	if sprite_node_pos_tween and sprite_node_pos_tween.is_running():
+	if Dialogue.is_open() or (sprite_node_pos_tween and sprite_node_pos_tween.is_running()):
 		return
 
 	if Input.is_action_pressed("up"):
+		facing_ray = $up
 		idle_anim = "idle up"
 		if _can_move($up):
 			_move(Vector2(0,-1))
 			sprite.play("walk up")
 			return
 	elif Input.is_action_pressed("down"):
+		facing_ray = $down
 		idle_anim = "default"
 		if _can_move($down):
 			_move(Vector2(0,1))
 			sprite.play("walk down")
 			return
 	elif Input.is_action_pressed("left"):
+		facing_ray = $left
 		idle_anim = "idle side"
 		sprite.flip_h = true
 		if _can_move($left):
@@ -33,6 +37,7 @@ func _physics_process(_delta):
 			sprite.play("walk side")
 			return
 	elif Input.is_action_pressed("right"):
+		facing_ray = $right
 		idle_anim = "idle side"
 		sprite.flip_h = false
 		if _can_move($right):
@@ -41,6 +46,14 @@ func _physics_process(_delta):
 			return
 
 	sprite.play(idle_anim)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("action") and !Dialogue.is_open():
+		var target = facing_ray.get_collider()
+		if target and target.has_method("interact"):
+			get_viewport().set_input_as_handled()
+			sprite.play(idle_anim)
+			target.interact(self)
 
 # Re-check the ray right now, so we see an NPC that just stepped into that tile
 func _can_move(ray: RayCast2D):
