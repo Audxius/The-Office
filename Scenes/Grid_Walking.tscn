@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cjwnxm6df4hqc" path="res://Assets/Textures/TX Tileset Grass.png" id="1_tqfu3"]
 [ext_resource type="PackedScene" uid="uid://ttaadeui32ds" path="res://Assets/Player/Player.tscn" id="2_xot0f"]
+[ext_resource type="PackedScene" uid="uid://bjp2b8rlh78pc" path="res://Assets/Prefabs/NPC.tscn" id="4_rkpjy"]
+[ext_resource type="PackedScene" uid="uid://c8l3325hsoyj" path="res://Assets/Prefabs/rock.tscn" id="5_y7rqg"]
+[ext_resource type="Script" uid="uid://da3x4i2c0vtp8" path="res://Scripts/GridSnap.gd" id="gridsnap"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xot0f"]
 texture = ExtResource("1_tqfu3")
@@ -268,6 +271,8 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_xot0f")
 
 [node name="Node2D" type="Node2D" unique_id=184417511]
+y_sort_enabled = true
+script = ExtResource("gridsnap")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1215737019]
 tile_set = SubResource("TileSet_phkby")
@@ -277,3 +282,9 @@ layer_0/tile_data = PackedInt32Array(0, 131072, 6, 1, 131072, 6, 65537, 131072, 
 
 [node name="Player" parent="." unique_id=778057859 instance=ExtResource("2_xot0f")]
 position = Vector2(160, 69)
+
+[node name="Player2" parent="." unique_id=1943983106 instance=ExtResource("4_rkpjy")]
+position = Vector2(210, 128)
+
+[node name="Rock" parent="." unique_id=1957142181 instance=ExtResource("5_y7rqg")]
+position = Vector2(134, 132)

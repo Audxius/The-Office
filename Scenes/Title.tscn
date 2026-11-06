@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bw7wke3675tff"]
 
 [ext_resource type="PackedScene" uid="uid://ttaadeui32ds" path="res://Assets/Player/Player.tscn" id="1_tochr"]
+[ext_resource type="PackedScene" uid="uid://c8l3325hsoyj" path="res://Assets/Prefabs/rock.tscn" id="2_phf2g"]
+[ext_resource type="PackedScene" uid="uid://bjp2b8rlh78pc" path="res://Assets/Prefabs/NPC.tscn" id="3_6khh7"]
+[ext_resource type="Script" uid="uid://da3x4i2c0vtp8" path="res://Scripts/GridSnap.gd" id="gridsnap"]
 
 [node name="Title" type="Control" unique_id=603785102]
 layout_mode = 3
@@ -23,5 +26,15 @@ text = "the office"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player" parent="." unique_id=778057859 instance=ExtResource("1_tochr")]
+[node name="World" type="Node2D" parent="." unique_id=1938631915]
+y_sort_enabled = true
+script = ExtResource("gridsnap")
+
+[node name="Player" parent="World" unique_id=778057859 instance=ExtResource("1_tochr")]
 position = Vector2(113, 202)
+
+[node name="Rock" parent="World" unique_id=1562782333 instance=ExtResource("2_phf2g")]
+position = Vector2(206, 201)
+
+[node name="NPC" parent="World" unique_id=268624213 instance=ExtResource("3_6khh7")]
+position = Vector2(317, 187)

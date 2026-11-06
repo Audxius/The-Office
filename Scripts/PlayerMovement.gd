@@ -7,31 +7,45 @@ var idle_anim = "default"
 @onready var sprite_offset = sprite.position
 
 func _ready() -> void:
-	global_position = (global_position / tile_size).floor() * tile_size + tile_size / 2
 	sprite.play("default")
 
 func _physics_process(_delta):
-	if !sprite_node_pos_tween or !sprite_node_pos_tween.is_running():
-		if Input.is_action_pressed("up") and !$up.is_colliding():
+	if sprite_node_pos_tween and sprite_node_pos_tween.is_running():
+		return
+
+	if Input.is_action_pressed("up"):
+		idle_anim = "idle up"
+		if _can_move($up):
 			_move(Vector2(0,-1))
 			sprite.play("walk up")
-			idle_anim = "idle up"
-		elif Input.is_action_pressed("down") and !$down.is_colliding():
+			return
+	elif Input.is_action_pressed("down"):
+		idle_anim = "default"
+		if _can_move($down):
 			_move(Vector2(0,1))
 			sprite.play("walk down")
-			idle_anim = "default"
-		elif Input.is_action_pressed("left") and !$left.is_colliding():
+			return
+	elif Input.is_action_pressed("left"):
+		idle_anim = "idle side"
+		sprite.flip_h = true
+		if _can_move($left):
 			_move(Vector2(-1,0))
 			sprite.play("walk side")
-			sprite.flip_h = true
-			idle_anim = "idle side"
-		elif Input.is_action_pressed("right") and !$right.is_colliding():
+			return
+	elif Input.is_action_pressed("right"):
+		idle_anim = "idle side"
+		sprite.flip_h = false
+		if _can_move($right):
 			_move(Vector2(1,0))
 			sprite.play("walk side")
-			sprite.flip_h = false
-			idle_anim = "idle side"
-		else:
-			sprite.play(idle_anim)
+			return
+
+	sprite.play(idle_anim)
+
+# Re-check the ray right now, so we see an NPC that just stepped into that tile
+func _can_move(ray: RayCast2D):
+	ray.force_raycast_update()
+	return !ray.is_colliding()
 
 func _move(dir: Vector2):
 	global_position += dir * tile_size

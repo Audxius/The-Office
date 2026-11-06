@@ -25,23 +25,23 @@ func _physics_process(delta):
 
 	match randi() % 4:
 		0:
-			if !$up.is_colliding():
+			if _can_move($up):
 				_move(Vector2(0,-1))
 				sprite.play("walk up")
 			idle_anim = "idle up"
 		1:
-			if !$down.is_colliding():
+			if _can_move($down):
 				_move(Vector2(0,1))
 				sprite.play("walk down")
 			idle_anim = "default"
 		2:
-			if !$left.is_colliding():
+			if _can_move($left):
 				_move(Vector2(-1,0))
 				sprite.play("walk side")
 			sprite.flip_h = true
 			idle_anim = "idle side"
 		3:
-			if !$right.is_colliding():
+			if _can_move($right):
 				_move(Vector2(1,0))
 				sprite.play("walk side")
 			sprite.flip_h = false
@@ -56,3 +56,8 @@ func _move(dir: Vector2):
 	sprite_node_pos_tween = create_tween()
 	sprite_node_pos_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	sprite_node_pos_tween.tween_property(sprite, "position", sprite_offset, speed).set_trans(Tween.TRANS_LINEAR)
+
+# Re-check the ray right now, so we see the player if they just stepped into that tile
+func _can_move(ray: RayCast2D):
+	ray.force_raycast_update()
+	return !ray.is_colliding()
