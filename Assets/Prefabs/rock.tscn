@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c8l3325hsoyj"]
+
+[ext_resource type="Texture2D" uid="uid://cegbx5i7dqclk" path="res://Assets/Textures/A rock.png" id="1_qd1ka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phkby"]
+size = Vector2(48, 48)
+
+[node name="Rock" type="StaticBody2D" unique_id=1957142181]
+position = Vector2(0, -24)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1297476062]
+texture = ExtResource("1_qd1ka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2131926919]
+shape = SubResource("RectangleShape2D_phkby")
